@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Eventos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome do Evento</th>
+        <th scope="col">Descricao do Evento</th>
+        <th scope="col">Quantidade de Ingressos</th>
+        <th scope="col">#</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="evento : ${eventos}">
+        <td data-th-text="${evento.id}"></td>
+        <td data-th-text="${evento.nome}"></td>
+        <td data-th-text="${evento.descricao}"></td>
+        <td data-th-text="${evento.qtdIngressos}"></td>
+<!--        <td>-->
+        <!--            <a th:href="@{'/edit/'+${task.id}}" >Editar</a>-->
+        <!--        </td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

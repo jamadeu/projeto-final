@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Evento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form method="POST" action="/cadastrar/evento" class="form">
+    <div class="mb-3">
+        <label for="inputCadastrarEvento" class="form-label">Nome do Evento</label>
+        <input type="text" class="form-control" name="nome" id="nome">
+    </div>
+    <div class="mb-3">
+        <label for="inputCadastrarEvento" class="form-label">Descricao do Evento</label>
+        <input type="text" class="form-control" name="descricao" id="descricao">
+    </div>
+    <div class="mb-3">
+        <label for="inputCadastrarEvento" class="form-label">Quantidade de Ingressos</label>
+        <input type="text" class="form-control" name="qtdIngressos" id="qtdIngressos">
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar Evento</button>
+</form>
+</body>
+</html>
