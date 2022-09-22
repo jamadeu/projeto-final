@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.ComprarIngressoRequest;
 import com.example.demo.model.Evento;
+import com.example.demo.model.Ingresso;
 import com.example.demo.repository.EventoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventoService {
@@ -16,9 +19,8 @@ public class EventoService {
         this.eventoRepository = eventoRepository;
     }
 
-    public Void cadastrar(Evento evento) {
+    public void cadastrar(Evento evento) {
         eventoRepository.save(evento);
-        return null;
     }
 
     public List<Evento> findAll() {
@@ -30,5 +32,16 @@ public class EventoService {
             }
         }
         return eventos;
+    }
+
+    public void comprarIngresso(ComprarIngressoRequest request, Long idEvento) {
+        Optional<Evento> eventoOptional = eventoRepository.findById(idEvento);
+        if (eventoOptional.isEmpty()){
+            throw new RuntimeException("Evento invalido");
+        }
+        Evento evento = eventoOptional.get();
+        Ingresso ingresso = request.toIngresso(evento);
+        evento.registraIngresso(ingresso);
+        eventoRepository.save(evento);
     }
 }

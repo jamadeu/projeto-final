@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "eventos")
@@ -16,18 +18,19 @@ public class Evento {
 
     private Long qtdIngressos;
 
-    @Deprecated
-    public Evento() {
+    @OneToMany(cascade = CascadeType.MERGE)
+    private final List<Ingresso> ingressos = new ArrayList<>();
+
+    public void registraIngresso(Ingresso ingresso){
+        ingressos.add(ingresso);
+        qtdIngressos--;
+    }
+    public List<Ingresso> getIngressos() {
+        return ingressos;
     }
 
-    @Override
-    public String toString() {
-        return "Evento{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", qtdIngressos=" + qtdIngressos +
-                '}';
+    @Deprecated
+    public Evento() {
     }
 
     public Evento(String nome, String descricao, Long qtdIngressos) {
